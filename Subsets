@@ -1,0 +1,24 @@
+//leetcode generate susbsets problem
+//solved using recursion
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        generateSet(nums, 0, new ArrayList<>(), result);
+        return result;
+    }
+
+    private void generateSet(int[] arr, int index, 
+                         List<Integer> current, 
+                         List<List<Integer>> result) {
+
+        // save snapshot
+        result.add(new ArrayList<>(current));
+
+        for(int i = index; i < arr.length; i++){
+            current.add(arr[i]);               // choose
+            generateSet(arr, i + 1, current, result);
+            current.remove(current.size() - 1); // unchoose
+        }
+    }
+
+}
